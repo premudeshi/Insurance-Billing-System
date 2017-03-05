@@ -16,7 +16,9 @@ $updation = mysqli_real_escape_string($link, $_REQUEST['updation']);
 
  
 // attempt insert query execution
-$sql = "UPDATE `claim` SET $updation = $update WHERE `claim`.`id` = $number ";
+$sql = "UPDATE claim
+		set $update=$updation
+		WHERE id=$number;";
 if(mysqli_query($link, $sql)){
     echo "Claim Updated successfully.";
 } else{
