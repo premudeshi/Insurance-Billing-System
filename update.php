@@ -13,7 +13,7 @@
 
 <form action="updateclaim.php" method="post">
     <p>
-        <label for="claimnumber">Claim Number (Extract from Google Sheet):</label>
+        <label for="claimnumber">Claim ID Number (Extract from Google Sheet):</label>
         <input type="text" name="claimnumber" id="claimnumber">
     </p>
 

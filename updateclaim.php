@@ -16,9 +16,9 @@ $updation = mysqli_real_escape_string($link, $_REQUEST['updation']);
 
  
 // attempt insert query execution
-$sql = "UPDATE `claim` SET $update = $updation WHERE `claim`.`claimnumber` = $number ";
+$sql = "UPDATE `claim` SET $updation = $update WHERE `claim`.`id` = $number ";
 if(mysqli_query($link, $sql)){
-    echo "Claim added successfully.";
+    echo "Claim Updated successfully.";
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
