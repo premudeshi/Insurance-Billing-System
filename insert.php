@@ -9,6 +9,7 @@ if($link === false){
 }
  
 // Escape user inputs for security
+$number = mysqli_real_escape_string($link, $_REQUEST['claimnumber']);
 $insured = mysqli_real_escape_string($link, $_REQUEST['insured']);
 $insurance_company = mysqli_real_escape_string($link, $_REQUEST['insuranceCompany']);
 $kind = mysqli_real_escape_string($link, $_REQUEST['kindAttn']);
@@ -20,7 +21,7 @@ $date = mysqli_real_escape_string($link, $_REQUEST['date']);
 $broker = mysqli_real_escape_string($link, $_REQUEST['broker']);
  
 // attempt insert query execution
-$sql = "INSERT INTO claim (id , insured, insurance_company, kind_attn , our_ref, risk_note , location_loss, loss, date, broker) VALUES (' ' ,'$insured', '$insurance_company', '$kind' , '$our_ref' , '$risk_note' , '$location' , '$loss' , '$date' , '$broker')";
+$sql = "INSERT INTO claim (id , claimnumber, insured, insurance_company, kind_attn , our_ref, risk_note , location_loss, loss, date, broker) VALUES (' ' ,'$number', '$insured', '$insurance_company', '$kind' , '$our_ref' , '$risk_note' , '$location' , '$loss' , '$date' , '$broker')";
 if(mysqli_query($link, $sql)){
     echo "Claim added successfully.";
 } else{

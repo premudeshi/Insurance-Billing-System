@@ -13,6 +13,11 @@
 
 <form action="insert.php" method="post">
     <p>
+        <label for="claimnumber">Claim Number (Extract from Google Sheet):</label>
+        <input type="text" name="claimnumber" id="claimnumber">
+    </p>
+
+    <p>
         <label for="insured">Insured:</label>
         <input type="text" name="insured" id="insured">
     </p>
