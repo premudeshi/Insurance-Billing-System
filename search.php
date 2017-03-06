@@ -1,34 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>View All Claims!</title>
+	<title>Search Results</title>
 	<style>
 table, th, td {
      border: 1px solid black;
 }
 </style>
 </head>
-<h2>View all Claims</h2>
-<h3>Search:</h3>
-<body>
-<form action="search.php">
-        <label for="searchselection" id="searchselection">What to Search:</label>
-        <select name="searchselection">
-        <option value="insured">Insured</option>
-        <option value="insurance_company">Insurance Company</option>
-        <option value="kind_attn">Kind Attn</option>
-        <option value="our_ref">Refrance</option>
-        <option value="risk_note">Risk Note</option>
-        <option value="location_loss">Location of Loss</option>
-        <option value="loss">Loss</option>
-        <option value="broker">Broker</option>
-        </select>
-
-<label for="text">Search For:</label>
-        <input type="text" name="text" id="text">
-
-  <input type="submit" value="Submit">
-</form>
 
 
 </body>
@@ -37,12 +16,20 @@ table, th, td {
 
 
 <?php
-
-
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "invoices";
+
+
+$link = mysqli_connect($servername, $username, $password, $dbname);
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+$search = mysqli_real_escape_string($link, $_REQUEST['searchselection']);
+$searchfor = mysqli_real_escape_string($link, $_REQUEST['text']);
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -52,10 +39,13 @@ if ($conn->connect_error) {
 } 
 
 
-$sql = "SELECT * FROM claim";
+$sql = "SELECT * FROM `claim` WHERE $search LIKE $searchfor";
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
+
+
+
+if ($result -> num_rows > 0) {
      echo "<table><tr><th>ID</th><th>Name</th><th>Insurance Company</th><th>Kind Attn</th><th>Our Ref</th><th>Risk Note</th> <th>Location of Loss</th> <th>Loss</th><th>Date of Loss</th> <th>Broker</th> </tr>";
      // output data of each row
      while($row = $result->fetch_assoc()) {
